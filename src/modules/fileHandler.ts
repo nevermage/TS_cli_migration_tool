@@ -4,7 +4,7 @@ import {User} from "../types";
 import {FileNotExistsError} from "../errors";
 import {convertUser} from "./userConverter";
 
-export async function readUsersFromCSV(filename: string): Promise<User[]> {
+export function readUsersFromCSV(filename: string): Promise<User[]> {
     if (!fs.existsSync(filename)) {
         throw new FileNotExistsError(`Cannot read file ${filename}`);
     }
@@ -22,7 +22,7 @@ export async function readUsersFromCSV(filename: string): Promise<User[]> {
     });
 }
 
-export async function writeUsersToJson(filename: string, users: User[]): Promise<void> {
+export function writeUsersToJson(filename: string, users: User[]): Promise<void> {
     return new Promise((resolve, reject) => {
         const writeStream = fs.createWriteStream(filename);
 
